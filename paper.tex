@@ -1,44 +1,77 @@
-\documentclass[uplatex, twocolumn,10pt]{jsarticle}
+%%
+% 今時jarticleやjbook使ってる人いる？時代はjsarticleかjsbookだよ
+% ついでに言うと、uplatexってのはplatexの上位互換、これを使わないなんて旧世代だよね
+%
+\documentclass[uplatex, report, a4j, 10pt]{jsbook}
 
-\usepackage[dvipdfmx]{graphicx}
-\usepackage{latexsym}
-\usepackage{bmpsize}
+
+%%
+% パッケージ群
+%
+\usepackage{packages/miyazaki-u-paper}   % 宮崎大学工学部の卒論の基本（片山先生作）を、僕がちょっと書き換えちゃった（テヘッ
+\usepackage{enumitem}           % enumerate？古い古い
+\usepackage[dvipdfmx]{graphicx} % 当然dvipdfmなんて使ってないよね
+\usepackage[dvipdfmx]{color}    % listingsを使うときにはこれも必須、dvipdfmxを変えちゃうとgraphicxのdvipdfmxも変わるよ
+\usepackage{listings, packages/jlisting} % コードを埋め込むなら必須
+\usepackage{txfonts}            % フォントといえばやっぱりtxfonts、今はnewtxってのもあるらしい
+\usepackage{verbatim}           % コメントアウトしてくれる便利なプリアンブルが使える \begin{comment} ... \end{comment}
 \usepackage{url}
-\usepackage{comment}
+% \usepackage{easy-todo}
+\usepackage[hdivide={21mm, , 21mm}, vdivide={30mm, , 25mm}]{geometry} % スタイルを少し変えたくても\hoffset, \voffsetは使わないでね
+\usepackage{multirow}
+\usepackage{ascmac}
 
-\def\Underline{\setbox0\hbox\bgroup\let\\\endUnderline}
-\def\endUnderline{\vphantom{y}\egroup\smash{\underline{\box0}}\\}
+
+% \usepackage{latexsym}
+% \usepackage{bmpsize}
+% \usepackage{comment}
+
+% \def\Underline{\setbox0\hbox\bgroup\let\\\endUnderline}
+% \def\endUnderline{\vphantom{y}\egroup\smash{\underline{\box0}}\\}
 
 \newcommand{\ttt}[1]{\texttt{#1}}
 
-\begin{document}
+%%
+% miyazaki-u-paper.sty用設定値
+%
+\degree{g} % Graduateのg or Masterのm
+\figurenumbering{f} % 図目次を付ける場合はt (真) を持つ真偽値を引数に取る関数
+\tablenumbering{f} % 表目次を付ける場合はt (真) を持つ真偽値を引数に取る関数
+\title{Sample Title}
+\author{Sample NAME}
+\nendo{2} % 年度
+\advisor{片山 徹郎 教授} % 修論では無視する
+\major{情報システム工学科}
 
-\title{\bf{\LARGE{Sample of \LaTeX  Document} \\ \Large{\LaTeX のサンプルコード}}}
-\author{平木場 風太\\宮崎大学大学院}
-\date{2019年6月12日(水)}
+
+\begin{document}
 \maketitle
 
 
-\section{はじめに}
-\begin{figure}[t]
-    \begin{center}
-        \includegraphics[width=7cm]{image/syokuji_computer.png}
-        \caption{パソコンの前でご飯を食べる人のイラスト}
-        \label{fig:syokuji_computer}
-    \end{center}
-\end{figure}
+%
+% 本文
+% 
+\input{chapters/10-introduction.tex}
+\input{chapters/20-preparation.tex}
+\input{chapters/30-function.tex}
+\input{chapters/40-implementation.tex}
+\input{chapters/50-indication.tex}
+\input{chapters/60-discussion.tex}
+\input{chapters/70-conclusion.tex}
 
-パソコンの前でご飯を食べることはよくある。パソコンの前でご飯を食べる人のイラストを図\ref{fig:syokuji_computer}に示す。
-このイラストは、規約の範囲内であれば、個人、法人、商用、非商用問わず無料で利用できることでおなじみの、{\bf かわいいフリー素材 いらすとや}\cite{irasutoya}より引用した。
+%%
+% 謝辞
+%
+\input{chapters/90-acknowledgments.tex}
 
-\section{おわりに}
-やっぱり{\bf いらすとや}のイラストはすばらしい。
-
-\begin{thebibliography}{99}
-    \bibitem{irasutoya} いらすとや, last access 2019.6.13 \url{https://www.irasutoya.com/}
-
-
-
+%%
+%参考文献
+%
+\begin{thebibliography}{0}
+	\bibitem{example}example\\
+	\url{http://example.com}\\アクセス日:1970/01/01.
 \end{thebibliography}
 
+% \newpage
+% \listoftodos
 \end{document}
