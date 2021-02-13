@@ -7,7 +7,6 @@ endif
 
 all:
 	latexmk paper.tex -f
-	make clean-intermediate-file
 
 open:
 	# リモートコンテナからは実行できない
