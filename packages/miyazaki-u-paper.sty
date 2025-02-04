@@ -131,8 +131,12 @@
 \def\advisor{\def\@advisor}
 %\def\cource{\def\@cource}
 \def\department{\def\@department}
+\def\studentNumber{\def\@studentNumber}  % 学籍番号用のマクロを追加
+\def\submitDate{\def\@submitDate}  % 提出日用のマクロを追加
 
 \degree{g}
+\studentNumber{\null}
+\submitDate{\today}  % デフォルトは\todayを使用
 \figurenumbering{f} % 図の目次をつける場合はt
 \tablenumbering{f} % 表の目次をつける場合はt
 \title{論文のタイトル}
@@ -220,8 +224,8 @@
 %{\Large \@major \hskip 1em \@cource \par}\vskip 0.5em minus 0.5em
 %
 {\Large 宮崎大学 工学部 \@major \par}\vskip 0.5em minus 0.5em
-{\LARGE\textbf{\@author}\par}\vskip 6em minus 2em
-{\Large\textbf{\@date}}\vskip 4em minus 1em
+{\LARGE\textbf{\@studentNumber \hskip 1em \@author}\par}\vskip 6em minus 2em
+{\Large\textbf{\@submitDate}\par}\vskip 4em minus 1em
 %{\Large\textbf{\@major}\par}\vskip 2em minus 1em
 %{\Large\textbf{\@department}\par}
 \end{center}
@@ -235,7 +239,7 @@
 \begin{center}
 {\LARGE 宮崎大学大学院 \\ 修士学位論文 \par}\vskip 2em minus 1em
 {\huge\textbf{\@title}\par}\vskip 10em minus 4em
-{\Large\textbf{\@date}}\vskip 10em minus 1em
+{\Large\textbf{\@submitDate}}\vskip 10em minus 1em
 {\Large 宮崎大学大学院 工学研究科 修士課程 \\ \@major \par}\vskip 0.5em minus 0.5em
 {\LARGE\textbf{\@author}\par}\vskip 6em minus 2em
 %{\Large\textbf{\@major}\par}\vskip 2em minus 1em
@@ -552,7 +556,7 @@ to\hsize{\hfil\box\@tempboxa\hfil}
 \def\@chapapp#1{\textbf{第 #1 章}}
 \def\@partapp#1{第 #1 部}
 
-\def\today{\the\year 年 \the\month 月}
+\def\today{\the\year 年 \the\month 月 \the\day 日}
 
 \def\sloppy{\tolerance 5000 \hfuzz .5\p@ \vfuzz .5\p@}
 
