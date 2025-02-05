@@ -1,0 +1,53 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{AbstractStyle}[卒業論文発表要旨のスタイルファイル]
+
+% 印刷時に余白が25mmになるようにする
+% jsarticleのせいで、25mmと設定するとうまくいかない
+\RequirePackage{geometry}
+\geometry{a4paper, top=18mm, bottom=18mm, left=22mm, right=22mm}
+
+% パッケージオプションの設定
+\newif\ifAbstract@twocolumn
+% デフォルトは1段組（twocolumn=false）
+\Abstract@twocolumnfalse
+
+% オプション名"twocolumn"はjsarticle等の標準オプションと衝突するため，別名を使用
+\DeclareOption{twocol}{\Abstract@twocolumntrue}
+\DeclareOption{onecol}{\Abstract@twocolumnfalse}
+\ProcessOptions\relax
+
+% 2段組オプションの場合、multicolパッケージを読み込む
+\ifAbstract@twocolumn
+  \RequirePackage{multicol}
+\fi
+
+% ユーザーが設定するための論文タイトル・発表者名・指導教員名の変数(初期値)
+\newcommand{\AbstractTitle}{タイトル未設定}
+\newcommand{\AbstractPresenter}{発表者未設定}
+
+% 各項目を個別に設定するためのコマンド
+\newcommand{\setAbstractTitle}[1]{\renewcommand{\AbstractTitle}{#1}}
+\newcommand{\setAbstractPresenter}[1]{\renewcommand{\AbstractPresenter}{#1}}
+
+% 1ページ目の先頭に表示するヘッダ部分の定義
+\newcommand{\AbstractHeader}{%
+  \begin{center}
+    % 年度が自動で埋まるはず
+    {\large\bfseries \ifnum\month<4 \number\numexpr\year-1\relax\else \number\year\fi 年度情報通信工学プログラム卒業研究発表要旨}\\[1em]
+    {\LARGE\bfseries \AbstractTitle}\\[1em]
+    {\normalsize 発表者 \AbstractPresenter \qquad 指導教員 片山徹郎}\\[1em]
+  \end{center}%
+}
+
+% 本文部分の環境(オプションにより1段組または2段組)
+\newenvironment{AbstractBody}{%
+  \ifAbstract@twocolumn
+    \begin{multicols}{2}%
+  \fi
+}{%
+  \ifAbstract@twocolumn
+    \end{multicols}%
+  \fi
+}
+
+\endinput 
