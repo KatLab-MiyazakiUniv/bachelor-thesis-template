@@ -33,18 +33,20 @@
 \newcommand{\AbstractHeader}{%
   \begin{center}
     % 年度が自動で埋まるはず
-    {\large\bfseries \ifnum\month<4 \number\numexpr\year-1\relax\else \number\year\fi 年度情報通信工学プログラム卒業研究発表要旨}\\[1em]
+    {\Large\bfseries \ifnum\month<4 \number\numexpr\year-1\relax\else \number\year\fi 年度情報通信工学プログラム卒業研究発表要旨}\\[1em]
     {\LARGE\bfseries \AbstractTitle}\\[1em]
-    {\normalsize 発表者 \AbstractPresenter \qquad 指導教員 片山徹郎}\\[1em]
+    {\Large 発表者 \AbstractPresenter \qquad 指導教員 片山徹郎}\\[4em]
   \end{center}%
 }
 
 % 本文部分の環境(オプションにより1段組または2段組)
 \newenvironment{AbstractBody}{%
+  \large
   \ifAbstract@twocolumn
     \begin{multicols}{2}%
   \fi
 }{%
+  \large
   \ifAbstract@twocolumn
     \end{multicols}%
   \fi
