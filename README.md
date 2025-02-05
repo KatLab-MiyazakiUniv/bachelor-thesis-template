@@ -27,6 +27,12 @@ make
 
 `paper.pdf`という実行ファイルができているはず。
 
+2024年度から、卒業論文では本文中に概要を書くのではなく、発表要旨として別で作成することになった。
+以下のコマンドを実行すると、bachelorAbstractディレクトリのabstract.texファイルをビルドして、abstract.pdfを生成する。
+```bash
+make abstract
+```
+
 ## clean
 
 ```bash
